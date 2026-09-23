@@ -147,18 +147,24 @@ def card(ev):
 
 
 def notify(ev, cfg):
+    """Every channel runs to completion: launchd kills a job's leftover children
+    when it exits, so a backgrounded afplay/say is cut off before it plays."""
     title = f"BTC {fmt_et(ev['close'])} {ev['side']} {ev['hist_hit']:.0%} · ${abs(ev['gap']):,.0f} cushion · ask {ev['ask'] * 100:.0f}¢"
     body = f"strike ${ev['strike']:,.2f} spot ${ev['spot']:,.0f} · {ev['z']:.2f}σ · edge {ev.get('edge', 0) * 100:+.1f}¢"
+    def run(cmd):
+        try:
+            subprocess.run(cmd, capture_output=True, timeout=20)
+        except Exception as e:
+            print(f"alert channel {cmd[0]} failed: {e}", file=sys.stderr)
     if cfg.get("banner", True):
-        subprocess.run(["osascript", "-e", f'display notification {json.dumps(body)} with title {json.dumps(title)}'],
-                       capture_output=True, timeout=10)
+        run(["/usr/bin/osascript", "-e", f'display notification {json.dumps(body)} with title {json.dumps(title)}'])
     if cfg.get("sound", True):
-        subprocess.Popen(["afplay", "/System/Library/Sounds/Glass.aiff"])
+        run(["/usr/bin/afplay", "/System/Library/Sounds/Glass.aiff"])
     if cfg.get("speak", False):
-        subprocess.Popen(["say", f"B T C {ev['side']}, {ev['hist_hit'] * 100:.0f} percent"])
+        run(["/usr/bin/say", f"Bitcoin {fmt_et(ev['close'])} window, {ev['side'].lower()}, "
+                             f"{ev['hist_hit'] * 100:.0f} percent, ask {ev['ask'] * 100:.0f} cents"])
     if cfg.get("email", False):
-        subprocess.run(["node", os.path.expanduser("~/flip-notifier/send-email.js"), title, card(ev)],
-                       capture_output=True, timeout=60)
+        run(["node", os.path.expanduser("~/flip-notifier/send-email.js"), title, card(ev)])
 
 
 def settle(state):
