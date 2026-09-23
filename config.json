@@ -1,0 +1,4 @@
+{
+  "_comment": "Alert channels for scheduled mode (--run). One alert per window, only when the cushion gate passes. This Mac hides notification bodies, so the call rides in the banner title; sound is the reliable channel.",
+  "alerts": {"banner": true, "sound": true, "speak": false, "email": false}
+}
