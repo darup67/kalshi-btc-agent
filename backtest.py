@@ -239,8 +239,8 @@ def main():
 
     # what a stated confidence has actually been worth, all data (shown on the card)
     hit_table = []
-    edges = [0.80, 0.85, 0.90, 0.95, 0.98, 1.0001]
-    allc = calls(A + B, 0.80)
+    edges = [0.50, 0.60, 0.70, 0.80, 0.85, 0.90, 0.95, 0.98, 1.0001]
+    allc = calls(A + B, 0.50)
     for lo, hi in zip(edges, edges[1:]):
         sel = [x for x in allc if lo <= x[1] < hi]
         if sel:

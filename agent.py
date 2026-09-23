@@ -13,6 +13,7 @@ gate.json, calibrated by backtest.py. Everything else is NO CALL.
 import json, math, os, sys, subprocess, time
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+from statistics import NormalDist
 import feeds, model
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -98,9 +99,13 @@ def evaluate():
         return {**ev, "status": "no_call", "why": f"only {elapsed:.1f} min in; cushion not formed yet (gate starts at minute {gate['min_minute']})"}
     if left < 1:
         return {**ev, "status": "no_call", "why": "under a minute left; settlement averaging has started"}
-    if conf < gate["min_conf"]:
+    min_conf = load(CONFIG, {}).get("min_conf_override") or gate["min_conf"]
+    min_z = NormalDist().inv_cdf(min_conf)
+    if conf < min_conf:
+        need = min_z * sd
         return {**ev, "status": "no_call",
-                "why": f"cushion ${abs(ev['gap']):.0f} = {ev['z']:.2f}σ, gate needs {gate['min_z']:.2f}σ"}
+                "why": f"cushion ${abs(ev['gap']):.0f} = {ev['z']:.2f}σ, gate needs {min_z:.2f}σ "
+                       f"(BTC above ${ev['strike'] + need:,.0f} or below ${ev['strike'] - need:,.0f})"}
     h = historical_hit(gate, conf)
     ev["hist_hit"] = h["hit"] if h else None
     ev["hist_n"] = h["n"] if h else None
