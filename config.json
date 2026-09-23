@@ -5,7 +5,7 @@
   "alerts": {
     "banner": true,
     "sound": true,
-    "speak": false,
+    "speak": true,
     "email": false
   }
 }
