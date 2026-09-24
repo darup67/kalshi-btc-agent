@@ -157,7 +157,9 @@ def notify(ev, cfg):
         except Exception as e:
             print(f"alert channel {cmd[0]} failed: {e}", file=sys.stderr)
     if cfg.get("banner", True):
-        run(["/usr/bin/osascript", "-e", f'display notification {json.dumps(body)} with title {json.dumps(title)}'])
+        with open(os.path.join(HERE, "data", "alert.txt"), "w") as f:
+            f.write(title.replace("\n", " ") + "\n" + body.replace("\n", " ") + "\n")
+        run(["/usr/bin/open", "-g", os.path.join(HERE, "KalshiBTCAlert.app")])
     if cfg.get("sound", True):
         run(["/usr/bin/afplay", "/System/Library/Sounds/Glass.aiff"])
     if cfg.get("speak", False):
