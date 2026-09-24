@@ -3,3 +3,5 @@ __pycache__/
 data/candles-*.json
 data/kalshi-candles.json
 data/state.json
+KalshiBTCAlert.app/
+data/alert.txt
