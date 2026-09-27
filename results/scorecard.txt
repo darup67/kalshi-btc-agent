@@ -1,0 +1,2 @@
+4977 evaluations logged, 318 calls settled
+hit rate 289/318 = 90.9% · expected 79.7% · Brier 0.0957 · paper EV at ask +16.3¢/contract (no orders placed)
