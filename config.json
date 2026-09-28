@@ -5,7 +5,8 @@
   "alerts": {
     "banner": true,
     "sound": true,
-    "speak": true,
+    "speak": false,
     "email": false
-  }
+  },
+  "_speak_comment": "Voice turned off by the user 2026-09-28 (banners only). Banner + sound unchanged."
 }
