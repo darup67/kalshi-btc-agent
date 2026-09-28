@@ -166,7 +166,7 @@ def notify(ev, cfg):
         run(["/usr/bin/say", f"Bitcoin {fmt_et(ev['close'])} window, {ev['side'].lower()}, "
                              f"{ev['hist_hit'] * 100:.0f} percent, ask {ev['ask'] * 100:.0f} cents"])
     if cfg.get("email", False):
-        run(["node", os.path.expanduser("~/flip-notifier/send-email.js"), title, card(ev)])
+        run([os.path.expanduser("~/.local/bin/node"), os.path.expanduser("~/flip-notifier/send-email.js"), title, card(ev)])
 
 
 def settle(state):
