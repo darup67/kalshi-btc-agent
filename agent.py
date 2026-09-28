@@ -211,6 +211,40 @@ def run():
             print(card(ev))
         state["alerted"] = {k: v for k, v in alerted.items() if k == ev["ticker"] or k in state["pending"]}
     json.dump(state, open(STATE, "w"), indent=1)
+    try:
+        autocommit()
+    except Exception as e:
+        print(f"autocommit: {e!r}", file=sys.stderr)
+
+
+GIT = "/usr/local/bin/git"   # absolute: /usr/bin/git is Apple's stub and pops an install dialog without the CLT
+
+
+def autocommit():
+    """Hourly: commit and push data/evals.jsonl (added 2026-09-28; before this only the weekly
+    recal did, and 2,021 rows once sat uncommitted). Runs every minute but only acts when the
+    file is dirty and its last commit is an hour old. A git failure (index.lock held by
+    recal.sh, no network) is logged and retried next minute; it never blocks the caller."""
+    def git(*a):
+        r = subprocess.run([GIT, *a], cwd=HERE, capture_output=True, text=True, timeout=60)
+        return r.returncode == 0, (r.stdout + r.stderr).strip()
+
+    ok, out = git("status", "--porcelain", "data/evals.jsonl")
+    if not ok or not out:
+        return
+    ok, last = git("log", "-1", "--format=%ct", "--", "data/evals.jsonl")
+    if ok and last and time.time() - int(last) < 3600:
+        return
+    ok, stat = git("diff", "--numstat", "--", "data/evals.jsonl")
+    added = stat.split()[0] if ok and stat else "?"
+    ok, out = git("add", "data/evals.jsonl")
+    if ok:
+        ok, out = git("-c", "user.name=kalshi-btc-agent", "-c", "user.email=darup67@gmail.com",
+                      "commit", "-q", "-m", f"data: evals.jsonl (+{added} rows)", "--", "data/evals.jsonl")
+    if ok:
+        ok, out = git("push", "-q", "origin", "HEAD")
+    if not ok:
+        print(f"autocommit: git failed: {out[-200:]}", file=sys.stderr)
 
 
 def scorecard():
