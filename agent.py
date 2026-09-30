@@ -146,6 +146,37 @@ def card(ev):
     return head + "\n\n" + "\n".join(f"  {k.ljust(w)}  {v}" for k, v in rows)
 
 
+def card_spec(ev):
+    """Email layout (shared template, ~/flip-notifier/email-ui.js)."""
+    win = f"{fmt_et(ev['open'])} to {fmt_et(ev['close'])} ET"
+    e = ev.get("edge")
+    call = ev.get("status") == "call"
+    kp = [{"label": "Call", "value": f"{ev['side']} strike" if call else "NO CALL", "tone": ("good" if ev.get("side") == "UP" else "bad") if call else "neutral"}]
+    if call:
+        kp += [{"label": "Won historically", "value": f"{ev['hist_hit']:.0%}", "sub": f"n={ev['hist_n']} similar calls"},
+               {"label": "Model", "value": f"{ev['conf']:.1%}", "sub": "chance of finishing " + ("above" if ev["side"] == "UP" else "below")},
+               {"label": "Kalshi ask", "value": f"{ev['ask'] * 100:.0f}¢", "sub": f"{ev['side']} side"}]
+    rows = [{"k": {"v": "Strike", "bold": True}, "v": f"${ev['strike']:,.2f}" if ev.get("strike") else "unknown"}]
+    if "spot" in ev:
+        rows.append({"k": {"v": "Bitcoin now", "bold": True}, "v": f"${ev['spot']:,.0f} ({abs(ev['gap']):,.0f} {'above' if ev['gap'] >= 0 else 'below'} the strike)"})
+    if "sd_to_close" in ev:
+        rows.append({"k": {"v": "Cushion", "bold": True}, "v": f"{ev['z']:.2f}σ: ${abs(ev['gap']):,.0f} against a typical ±${ev['sd_to_close']:,.0f} move to close"})
+    if "range_15m" in ev:
+        rows.append({"k": {"v": "Volatility", "bold": True}, "v": f"${ev['range_15m']:,.0f} expected 15-minute range (60-minute realized)"})
+    if not call:
+        rows.append({"k": {"v": "Why no call", "bold": True}, "v": ev.get("why", "")})
+    secs = [{"blocks": [{"type": "kpis", "items": kp}]},
+            {"title": "The window", "blocks": [{"type": "table", "columns": [{"key": "k", "label": "Item"}, {"key": "v", "label": "Value"}], "rows": rows}]}]
+    if call and e is not None:
+        secs.append({"title": "Is there an edge?", "blocks": [{"type": "callout", "tone": "warn" if e <= 0 else "info",
+                     "text": f"{e * 100:+.1f}¢ per contract after Kalshi's fee. " + ("The market already prices this in, so there is no edge." if e <= 0 else "Positive, but unproven: the backtest's confidence interval spans zero.")}]})
+    secs.append({"title": "How to read this", "blocks": [{"type": "para", "text": "Kalshi's 15-minute Bitcoin markets settle on the average of the final 60 seconds of the BRTI price index. This agent uses a Coinbase plus Bitstamp proxy for that index, and only calls a window once the price cushion over the strike is large enough. In 24 days of research the calls were accurate but the price already reflected it."}]})
+    title = (f"Bitcoin 15-Minute Window {win}: {ev['side']} Call, {ev['hist_hit']:.0%} Historical Hit Rate" if call else f"Bitcoin 15-Minute Window {win}: No Call")
+    return {"kind": "Prediction · Kalshi Bitcoin 15-minute", "status": {"text": "CALL" if call else "NO CALL", "tone": "info" if call else "neutral"},
+            "title": title, "subtitle": f"Minute {ev['minute']:.0f} of 15 · Kalshi market KXBTC15M · price proxy Coinbase plus Bitstamp", "sections": secs,
+            "footer": "Sent by the Kalshi BTC agent (read-only: it never places orders)."}
+
+
 def notify(ev, cfg):
     """Every channel runs to completion: launchd kills a job's leftover children
     when it exits, so a backgrounded afplay/say is cut off before it plays."""
@@ -166,7 +197,12 @@ def notify(ev, cfg):
         run(["/usr/bin/say", f"Bitcoin {fmt_et(ev['close'])} window, {ev['side'].lower()}, "
                              f"{ev['hist_hit'] * 100:.0f} percent, ask {ev['ask'] * 100:.0f} cents"])
     if cfg.get("email", False):
-        run([os.path.expanduser("~/.local/bin/node"), os.path.expanduser("~/flip-notifier/send-email.js"), title, card(ev)])
+        try:
+            sys.path.insert(0, os.path.expanduser("~/flip-notifier"))
+            import email_ui
+            email_ui.send(f"Kalshi BTC agent · {title}", card_spec(ev))
+        except Exception as ex:
+            print(f"alert channel email failed: {ex}", file=sys.stderr)
 
 
 def settle(state):
