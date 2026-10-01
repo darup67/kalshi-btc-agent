@@ -11403,3 +11403,64 @@
 {"status": "no_window", "t": 1790842561}
 {"status": "no_window", "t": 1790842625}
 {"status": "no_window", "t": 1790842685}
+{"status": "no_window", "t": 1790842744}
+{"status": "no_window", "t": 1790842803}
+{"status": "no_window", "t": 1790842864}
+{"status": "no_window", "t": 1790842923}
+{"status": "no_window", "t": 1790842984}
+{"status": "no_window", "t": 1790843043}
+{"status": "no_window", "t": 1790843104}
+{"status": "no_window", "t": 1790843162}
+{"status": "no_window", "t": 1790843224}
+{"status": "no_window", "t": 1790843285}
+{"status": "no_window", "t": 1790843345}
+{"status": "no_window", "t": 1790843405}
+{"status": "no_window", "t": 1790843465}
+{"status": "no_window", "t": 1790843525}
+{"status": "no_window", "t": 1790843585}
+{"status": "no_window", "t": 1790843643}
+{"status": "no_window", "t": 1790843705}
+{"status": "no_window", "t": 1790843764}
+{"status": "no_window", "t": 1790843825}
+{"status": "no_window", "t": 1790843885}
+{"status": "no_window", "t": 1790843945}
+{"status": "no_window", "t": 1790844001}
+{"status": "no_window", "t": 1790844065}
+{"status": "no_window", "t": 1790844124}
+{"status": "no_window", "t": 1790844184}
+{"status": "no_window", "t": 1790844241}
+{"status": "no_window", "t": 1790844305}
+{"status": "no_window", "t": 1790844362}
+{"status": "no_window", "t": 1790844425}
+{"status": "no_window", "t": 1790844485}
+{"status": "no_window", "t": 1790844544}
+{"status": "no_window", "t": 1790844603}
+{"status": "no_window", "t": 1790844665}
+{"status": "no_window", "t": 1790844724}
+{"status": "no_window", "t": 1790844781}
+{"status": "no_window", "t": 1790844841}
+{"status": "no_window", "t": 1790844905}
+{"status": "no_window", "t": 1790844964}
+{"status": "no_window", "t": 1790845025}
+{"status": "no_window", "t": 1790845085}
+{"status": "no_window", "t": 1790845145}
+{"status": "no_window", "t": 1790845205}
+{"t": 1790845265, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.56, "yes_ask": 0.57, "minute": 1.08, "minutes_left": 13.92, "feeds": {"coinbase": 83519.49, "kraken": 83524.2, "bitstamp": 83519.95}, "spot": 83519.72, "gap": 3.36, "sigma_1m": 42.7, "sd_to_close": 155.66, "p_yes": 0.5086, "side": "UP", "conf": 0.5086, "z": 0.02, "range_15m": 264.0, "ask": 0.57, "status": "no_call", "why": "only 1.1 min in; cushion not formed yet (gate starts at minute 3)"}
+{"t": 1790845325, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.49, "yes_ask": 0.5, "minute": 2.08, "minutes_left": 12.92, "feeds": {"coinbase": 83511.38, "kraken": 83509.5, "bitstamp": 83508.4}, "spot": 83509.89, "gap": -6.47, "sigma_1m": 42.17, "sd_to_close": 147.83, "p_yes": 0.4825, "side": "DOWN", "conf": 0.5175, "z": 0.04, "range_15m": 261.0, "ask": 0.51, "status": "no_call", "why": "only 2.1 min in; cushion not formed yet (gate starts at minute 3)"}
+{"t": 1790845385, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.52, "yes_ask": 0.53, "minute": 3.08, "minutes_left": 11.92, "feeds": {"coinbase": 83516.22, "kraken": 83517.6, "bitstamp": 83512.79}, "spot": 83514.51, "gap": -1.85, "sigma_1m": 41.8, "sd_to_close": 140.45, "p_yes": 0.4947, "side": "DOWN", "conf": 0.5053, "z": 0.01, "range_15m": 258.0, "ask": 0.48, "status": "no_call", "why": "cushion $2 = 0.01\u03c3, gate needs 0.52\u03c3 (BTC above $83,590 or below $83,443)"}
+{"t": 1790845445, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.58, "yes_ask": 0.59, "minute": 4.08, "minutes_left": 10.92, "feeds": {"coinbase": 83516.93, "kraken": 83519.3, "bitstamp": 83519.47}, "spot": 83518.2, "gap": 1.84, "sigma_1m": 41.45, "sd_to_close": 132.98, "p_yes": 0.5055, "side": "UP", "conf": 0.5055, "z": 0.01, "range_15m": 256.0, "ask": 0.59, "status": "no_call", "why": "cushion $2 = 0.01\u03c3, gate needs 0.52\u03c3 (BTC above $83,586 or below $83,447)"}
+{"t": 1790845505, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.63, "yes_ask": 0.64, "minute": 5.08, "minutes_left": 9.92, "feeds": {"coinbase": 83564.39, "kraken": 83560.6, "bitstamp": 83549.74}, "spot": 83557.07, "gap": 40.71, "sigma_1m": 41.65, "sd_to_close": 126.96, "p_yes": 0.6258, "side": "UP", "conf": 0.6258, "z": 0.32, "range_15m": 257.0, "ask": 0.64, "status": "no_call", "why": "cushion $41 = 0.32\u03c3, gate needs 0.52\u03c3 (BTC above $83,583 or below $83,450)"}
+{"t": 1790845565, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.66, "yes_ask": 0.67, "minute": 6.08, "minutes_left": 8.92, "feeds": {"coinbase": 83558.65, "kraken": 83557.1, "bitstamp": 83544.94}, "spot": 83551.79, "gap": 35.43, "sigma_1m": 40.27, "sd_to_close": 115.99, "p_yes": 0.62, "side": "UP", "conf": 0.62, "z": 0.31, "range_15m": 249.0, "ask": 0.67, "status": "no_call", "why": "cushion $35 = 0.31\u03c3, gate needs 0.52\u03c3 (BTC above $83,577 or below $83,456)"}
+{"t": 1790845625, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.75, "yes_ask": 0.76, "minute": 7.08, "minutes_left": 7.92, "feeds": {"coinbase": 83568.92, "kraken": 83561.0, "bitstamp": 83551.77}, "spot": 83560.35, "gap": 43.99, "sigma_1m": 40.26, "sd_to_close": 108.73, "p_yes": 0.6571, "side": "UP", "conf": 0.6571, "z": 0.4, "range_15m": 249.0, "ask": 0.76, "status": "no_call", "why": "cushion $44 = 0.40\u03c3, gate needs 0.52\u03c3 (BTC above $83,573 or below $83,459)"}
+{"t": 1790845681, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.79, "yes_ask": 0.8, "minute": 8.02, "minutes_left": 6.98, "feeds": {"coinbase": 83581.34, "kraken": 83575.5, "bitstamp": 83567.55}, "spot": 83574.45, "gap": 58.09, "sigma_1m": 40.54, "sd_to_close": 102.26, "p_yes": 0.715, "side": "UP", "conf": 0.715, "z": 0.57, "range_15m": 251.0, "ask": 0.8, "hist_hit": 0.7616, "hist_n": 2034, "edge": -0.0584, "status": "call"}
+{"t": 1790845745, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.85, "yes_ask": 0.86, "minute": 9.08, "minutes_left": 5.92, "feeds": {"coinbase": 83575.53, "kraken": 83573.1, "bitstamp": 83567.59}, "spot": 83571.56, "gap": 55.2, "sigma_1m": 39.23, "sd_to_close": 90.3, "p_yes": 0.7295, "side": "UP", "conf": 0.7295, "z": 0.61, "range_15m": 242.0, "ask": 0.86, "hist_hit": 0.7616, "hist_n": 2034, "edge": -0.1084, "status": "call"}
+{"t": 1790845805, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.903, "yes_ask": 0.904, "minute": 10.08, "minutes_left": 4.92, "feeds": {"coinbase": 83598.0, "kraken": 83592.4, "bitstamp": 83582.09}, "spot": 83590.04, "gap": 73.68, "sigma_1m": 39.19, "sd_to_close": 81.24, "p_yes": 0.8178, "side": "UP", "conf": 0.8178, "z": 0.91, "range_15m": 242.0, "ask": 0.904, "hist_hit": 0.8131, "hist_n": 915, "edge": -0.1009, "status": "call"}
+{"t": 1790845865, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.979, "yes_ask": 0.98, "minute": 11.08, "minutes_left": 3.92, "feeds": {"coinbase": 83671.69, "kraken": 83665.7, "bitstamp": 83652.33}, "spot": 83662.01, "gap": 145.65, "sigma_1m": 39.44, "sd_to_close": 71.62, "p_yes": 0.979, "side": "UP", "conf": 0.979, "z": 2.03, "range_15m": 244.0, "ask": 0.98, "hist_hit": 0.9364, "hist_n": 708, "edge": -0.0536, "status": "call"}
+{"t": 1790845925, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.983, "yes_ask": 0.984, "minute": 12.08, "minutes_left": 2.92, "feeds": {"coinbase": 83651.75, "kraken": 83654.9, "bitstamp": 83652.37}, "spot": 83652.06, "gap": 135.7, "sigma_1m": 38.82, "sd_to_close": 58.87, "p_yes": 0.9894, "side": "UP", "conf": 0.9894, "z": 2.31, "range_15m": 240.0, "ask": 0.984, "hist_hit": 0.9776, "hist_n": 1877, "edge": -0.0164, "status": "call"}
+{"t": 1790845985, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.988, "yes_ask": 0.99, "minute": 13.08, "minutes_left": 1.92, "feeds": {"coinbase": 83616.07, "kraken": 83615.3, "bitstamp": 83618.44}, "spot": 83617.26, "gap": 100.9, "sigma_1m": 38.92, "sd_to_close": 44.36, "p_yes": 0.9885, "side": "UP", "conf": 0.9885, "z": 2.27, "range_15m": 241.0, "ask": 0.99, "hist_hit": 0.9776, "hist_n": 1877, "edge": -0.0224, "status": "call"}
+{"t": 1790846045, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.998, "yes_ask": 0.999, "minute": 14.08, "minutes_left": 0.92, "feeds": {"coinbase": 83631.96, "kraken": 83633.4, "bitstamp": 83633.22}, "spot": 83632.59, "gap": 116.23, "sigma_1m": 38.83, "sd_to_close": 24.02, "p_yes": 1.0, "side": "UP", "conf": 1.0, "z": 4.84, "range_15m": 240.0, "ask": 0.999, "status": "no_call", "why": "under a minute left; settlement averaging has started"}
+{"t": 1790846105, "ticker": "KXBTC15M-26OCT010515-15", "open": "2026-10-01T09:00:00Z", "close": "2026-10-01T09:15:00Z", "strike": 83516.36, "yes_bid": 0.999, "yes_ask": 1.0, "minute": 15.08, "minutes_left": -0.08, "feeds": {"coinbase": 83658.35, "kraken": 83651.4, "bitstamp": 83639.36}, "spot": 83648.86, "gap": 132.5, "sigma_1m": 38.83, "sd_to_close": 24.02, "p_yes": 1.0, "side": "UP", "conf": 1.0, "z": 5.52, "range_15m": 240.0, "ask": 1.0, "status": "no_call", "why": "under a minute left; settlement averaging has started"}
+{"t": 1790846164, "ticker": "KXBTC15M-26OCT010530-30", "open": "2026-10-01T09:15:00Z", "close": "2026-10-01T09:30:00Z", "strike": 83637.96, "yes_bid": 0.55, "yes_ask": 0.56, "minute": 1.07, "minutes_left": 13.93, "feeds": {"coinbase": 83636.73, "kraken": 83632.0, "bitstamp": 83629.74}, "spot": 83633.24, "gap": -4.73, "sigma_1m": 38.83, "sd_to_close": 141.69, "p_yes": 0.4867, "side": "DOWN", "conf": 0.5133, "z": 0.03, "range_15m": 240.0, "ask": 0.45, "status": "no_call", "why": "only 1.1 min in; cushion not formed yet (gate starts at minute 3)"}
+{"t": 1790846224, "ticker": "KXBTC15M-26OCT010515-15", "status": "settled", "result": "yes", "side": "UP", "won": true, "conf": 0.715, "hist_hit": 0.7616, "ask": 0.8}
+{"t": 1790846224, "ticker": "KXBTC15M-26OCT010530-30", "open": "2026-10-01T09:15:00Z", "close": "2026-10-01T09:30:00Z", "strike": 83637.96, "yes_bid": 0.5, "yes_ask": 0.51, "minute": 2.07, "minutes_left": 12.93, "feeds": {"coinbase": 83630.12, "kraken": 83632.2, "bitstamp": 83632.61}, "spot": 83631.36, "gap": -6.6, "sigma_1m": 38.45, "sd_to_close": 134.93, "p_yes": 0.4805, "side": "DOWN", "conf": 0.5195, "z": 0.05, "range_15m": 238.0, "ask": 0.5, "status": "no_call", "why": "only 2.1 min in; cushion not formed yet (gate starts at minute 3)"}
+{"t": 1790846284, "ticker": "KXBTC15M-26OCT010530-30", "open": "2026-10-01T09:15:00Z", "close": "2026-10-01T09:30:00Z", "strike": 83637.96, "yes_bid": 0.54, "yes_ask": 0.55, "minute": 3.07, "minutes_left": 11.93, "feeds": {"coinbase": 83640.07, "kraken": 83637.3, "bitstamp": 83633.05}, "spot": 83636.56, "gap": -1.4, "sigma_1m": 38.44, "sd_to_close": 129.32, "p_yes": 0.4957, "side": "DOWN", "conf": 0.5043, "z": 0.01, "range_15m": 238.0, "ask": 0.46, "status": "no_call", "why": "cushion $1 = 0.01\u03c3, gate needs 0.52\u03c3 (BTC above $83,706 or below $83,570)"}
