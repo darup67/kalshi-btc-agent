@@ -10,7 +10,7 @@ gate.json, calibrated by backtest.py. Everything else is NO CALL.
     agent.py --run         scheduled mode: log, settle, alert once per window
     agent.py --scorecard   live record of every call made so far
 """
-import json, math, os, sys, subprocess, time
+import json, math, os, random, sys, subprocess, time
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from statistics import NormalDist
@@ -295,6 +295,26 @@ def scorecard():
     pnl = [int(r["won"]) - r["ask"] - model.kalshi_fee(min(max(r["ask"], .01), .99)) for r in s]
     print(f"hit rate {k}/{len(s)} = {k / len(s):.1%} · expected {sum(r['hist_hit'] for r in s) / len(s):.1%}"
           f" · Brier {brier:.4f} · paper EV at ask {sum(pnl) / len(pnl) * 100:+.1f}¢/contract (no orders placed)")
+    by_min = {}
+    first_call = {}
+    for r in evals:
+        if r["status"] == "call":
+            first_call.setdefault(r["ticker"], r)
+    for r, p in zip(s, pnl):
+        c = first_call.get(r["ticker"])
+        if c:
+            by_min.setdefault(int(c["minute"]), []).append((r["won"], r["ask"], p))
+    days = len({time.strftime("%Y-%m-%d", time.gmtime(r["t"])) for r in s})
+    rng = random.Random(1)
+    print(f"\nby minute of the first call in each window ({days} separate days; 95% range is a bootstrap that treats calls as independent, so it is too narrow):")
+    print("  min    n   hit    ask   EV¢/contract   95% range")
+    for m in sorted(by_min):
+        v = by_min[m]
+        n = len(v)
+        pn = [x[2] for x in v]
+        boot = sorted(sum(rng.choice(pn) for _ in range(n)) / n * 100 for _ in range(2000))
+        print(f"  {m:>3} {n:>4} {sum(x[0] for x in v) / n:5.1%}  {sum(x[1] for x in v) / n:.2f}   {sum(pn) / n * 100:+8.1f}      [{boot[50]:+.1f}, {boot[1949]:+.1f}]")
+    print("  Not proven until 10+ separate days; the backtest cell for minute 3 was +6.3¢ and not significant.")
 
 
 if __name__ == "__main__":
